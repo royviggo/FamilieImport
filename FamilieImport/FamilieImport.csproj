@@ -19,7 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FamilieImport.App\FamilieImport.App.csproj" />
     <ProjectReference Include="..\FamilieImport.Data\FamilieImport.Data.csproj" />
+    <ProjectReference Include="..\FamilieImport.Lecacy\FamilieImport.Lecacy.csproj" />
+    <ProjectReference Include="..\FamilieImport.RootsMagic\FamilieImport.RootsMagic.csproj" />
   </ItemGroup>
 
 </Project>

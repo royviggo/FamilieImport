@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using FamilieImport.App.Services;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Data.Odbc;
 
@@ -8,28 +9,21 @@ namespace ImportLegacy
     {
         static void Main(string[] args)
         {
-            //var filename = @"C:\source\ImportLegacy\ImportLegacy\LegacyData.accdb";
-            //var filename = @"C:\source\ImportLegacy\ImportLegacy\Database1.accdb";
-            //var legacyConnectionString = Settings.LegacyConnectionString(filename);
-            //var legacyConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + filename + ";Uid=admin;Pwd=;";
-            //var legacyConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dsn=Database1;";
-            //var connection = new OdbcConnection(legacyConnectionString);
+            var legacyFilename = @"C:\source\FamilieImport\Data\LegacyData.fdb";
+            var legacyConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + legacyFilename + ";Uid=admin;Pwd=;";
+            //var legacyConnection = new OdbcConnection(legacyConnectionString);
 
-            //Pedersen-Karlsen.rmgc
-            var rootsMagicConnectionString = @"Data Source=C:\source\FamilieImport\Data\Pedersen-Karlsen.rmgc";
-            var connection = new SqliteConnection(rootsMagicConnectionString);
-            
-            //using (var unitOfWork = new UnitOfWork(connection))
-            //{
-            //    Console.WriteLine("Places");
+            var rootsMagicConnectionString = @"Data Source=C:\source\FamilieImport\Data\RootsMagicData.rmgc";
+            var rootsMagicConnection = new SqliteConnection(rootsMagicConnectionString);
 
-            //    var persons = unitOfWork.Persons.GetAll();
-            //    foreach (var p in persons)
-            //    {
-            //        Console.WriteLine("{0} - {1} - {2}, {3}", p.ID, p.IDIR, p.Surname, p.GivenName);
-            //    }
+            var rootsMagicImportService = new RootsMagicImportService(rootsMagicConnection);
 
-            //}
+            Console.WriteLine("Persons");
+
+            foreach (var p in rootsMagicImportService.GetPersons())
+            {
+                Console.WriteLine("{0}", p.PersonID);
+            }
 
             Console.ReadLine();
         }
