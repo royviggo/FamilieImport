@@ -22,7 +22,7 @@ namespace ImportLegacy
 
             foreach (var p in rootsMagicImportService.GetPersons())
             {
-                Console.WriteLine("{0}", p.PersonID);
+                Console.WriteLine("{0}, {1}, {2}, {3}", p.PersonID, p.Sex, p.Living, p.Note);
             }
 
             Console.ReadLine();

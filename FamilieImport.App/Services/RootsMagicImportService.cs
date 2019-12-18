@@ -1,25 +1,22 @@
-﻿using Dapper;
-using FamilieImport.RootsMagic.Models;
-using System;
+﻿using FamilieImport.RootsMagic.Models;
+using ImportLegacy.RootsMagic.Repositories;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace FamilieImport.App.Services
 {
     public class RootsMagicImportService : BaseImportService
     {
-        private IDbConnection DbConnection { get; }
+        private RootsMagicRepository _rootsMagicRepository;
 
         public RootsMagicImportService(IDbConnection dbConnection)
         {
-            DbConnection = dbConnection;
+            _rootsMagicRepository = new RootsMagicRepository(dbConnection);
         }
 
         public IEnumerable<RootsMagicPerson> GetPersons()
         {
-            return DbConnection.Query<RootsMagicPerson>("SELECT * FROM PersonTable", param: new { });
+            return _rootsMagicRepository.GetPersons();
         }
-
     }
 }
