@@ -7,16 +7,16 @@ namespace FamilieImport.App.Services
 {
     public class RootsMagicImportService : BaseImportService
     {
-        private RootsMagicRepository _rootsMagicRepository;
+        private RootsMagicRepository RootsMagic { get; }
 
         public RootsMagicImportService(IDbConnection dbConnection)
         {
-            _rootsMagicRepository = new RootsMagicRepository(dbConnection);
+            RootsMagic = new RootsMagicRepository(dbConnection);
         }
 
         public IEnumerable<RootsMagicPerson> GetPersons()
         {
-            return _rootsMagicRepository.GetPersons();
+            return RootsMagic.GetPersons();
         }
     }
 }

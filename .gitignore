@@ -4,8 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Data files
-Data
-Data\*
+DataFiles
+DataFiles\*
 
 # User-specific files
 *.rsuser
