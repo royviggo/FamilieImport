@@ -1,5 +1,7 @@
 ﻿using FamilieImport.App.Services;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Data.Odbc;
 
@@ -9,6 +11,9 @@ namespace ImportLegacy
     {
         static void Main(string[] args)
         {
+            var logger = LoggerFactory.Create(builder => builder.AddConsole())
+                .CreateLogger<RootsMagicImportService>();
+
             var legacyFilename = @"C:\source\FamilieImport\Data\LegacyData.fdb";
             var legacyConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + legacyFilename + ";Uid=admin;Pwd=;";
             //var legacyConnection = new OdbcConnection(legacyConnectionString);
@@ -19,18 +24,8 @@ namespace ImportLegacy
             var rootsMagicConnection = new SqliteConnection(rootsMagicConnectionString);
             var importConnection = new SqliteConnection(importConnectionString);
 
-            var rootsMagicImportService = new RootsMagicImportService(rootsMagicConnection, importConnection);
-
+            var rootsMagicImportService = new RootsMagicImportService(rootsMagicConnection, importConnection, logger);
             rootsMagicImportService.Import();
-
-            //Console.WriteLine("Persons");
-
-            //foreach (var p in rootsMagicImportService.GetPersons())
-            //{
-            //    Console.WriteLine("{0}, {1}, {2}, {3}", p.PersonID, p.Sex, p.Living, p.Note);
-            //}
-
-            Console.ReadLine();
         }
     }
 }

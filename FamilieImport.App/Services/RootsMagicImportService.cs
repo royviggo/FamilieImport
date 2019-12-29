@@ -10,20 +10,23 @@ using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace FamilieImport.App.Services
 {
     public partial class RootsMagicImportService : BaseImportService
     {
         private RootsMagicRepository RootsMagic { get; }
-        private ImportRepository ImportRep { get; }
+        private ImportRepository ImportRepository { get; }
+        private ILogger Logger { get; }
         private readonly int rootsmagicSourceId = 1;
 
-        public RootsMagicImportService(IDbConnection dbData, IDbConnection dbImport)
+        public RootsMagicImportService(IDbConnection dbData, IDbConnection dbImport, ILogger logger)
         {
             RootsMagic = new RootsMagicRepository(dbData);
-            ImportRep = new ImportRepository(dbImport);
-        }
+            ImportRepository = new ImportRepository(dbImport);
+            Logger = logger;
+       }
 
         public IEnumerable<RootsMagicPerson> GetPersons()
         {
@@ -32,17 +35,17 @@ namespace FamilieImport.App.Services
 
         public void Import()
         {
-            Console.WriteLine("Starting import");
+            Logger.LogInformation("Starting import");
             var stopwatch = Stopwatch.StartNew();
 
             // Get Import Source
-            var source = ImportRep.GetSource(rootsmagicSourceId);
+            var source = ImportRepository.GetSource(rootsmagicSourceId);
 
             // Get Source Type
             //var sourceType = ImportRep.GetSourceType(source.SourceTypeId);
 
             // Create log
-            var logId = ImportRep.AddLog(new ImportLog
+            var logId = ImportRepository.AddLog(new ImportLog
             {
                 SourceId = source.Id,
                 Imported = DateTime.UtcNow,
@@ -66,20 +69,19 @@ namespace FamilieImport.App.Services
             SaveData(logId, RootsMagic.GetWitnesses());
 
             stopwatch.Stop();
-            Console.WriteLine("Elapsed time: {0}", stopwatch.Elapsed.ToString(@"mm\:ss\.fff"));
+            Logger.LogInformation("Elapsed time: {0}", stopwatch.Elapsed.ToString(@"mm\:ss\.fff"));
         }
 
         private void SaveData<T>(int logId, IEnumerable<T> importList) where T : IImportEntity
         {
             using var sha1 = new SHA1Managed();
-            Console.Write("Importing {0} ... ", typeof(T).Name);
             var dataList = new List<ImportData>();
 
             foreach (var item in importList)
             {
                 var jsonData = item.ToJsonData();
                 var checkSum = sha1.ComputeHash(Encoding.UTF8.GetBytes(jsonData)).ToHexString();
-                var dataExists = ImportRep.GetLatestData(rootsmagicSourceId, item.ItemType, item.ItemId);
+                var dataExists = ImportRepository.GetLatestData(rootsmagicSourceId, item.ItemType, item.ItemId);
 
                 if (dataExists?.CheckSum == checkSum) continue;
 
@@ -93,9 +95,9 @@ namespace FamilieImport.App.Services
                 });
             }
 
-            var insertedRows = ImportRep.AddData(dataList);
+            var insertedRows = ImportRepository.AddData(dataList);
 
-            Console.WriteLine("{0}", insertedRows);
+            Logger.LogInformation("Importing {0}... {1}", typeof(T).Name, insertedRows);
         }
     }
 }
