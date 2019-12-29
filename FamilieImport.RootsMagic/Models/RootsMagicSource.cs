@@ -1,6 +1,11 @@
-﻿namespace FamilieImport.RootsMagic.Models
+﻿using FamilieImport.Domain;
+using FamilieImport.Domain.Extensions;
+using FamilieImport.RootsMagic.Enums;
+using System.Text.Json.Serialization;
+
+namespace FamilieImport.RootsMagic.Models
 {
-    public class RootsMagicSource
+    public class RootsMagicSource : IImportEntity
     {
         public int SourceID { get; set; }
         public string Name { get; set; }
@@ -9,6 +14,15 @@
         public string Comments { get; set; }
         public int IsPrivate { get; set; }
         public int TemplateID { get; set; }
-        public string Fields { get; set; }
+
+        [JsonIgnore]
+        public byte[] Fields { get; set; }
+
+        public string FieldsString => Fields.ToNormalString();
+
+        [JsonIgnore]
+        public string ItemId => SourceID.ToString();
+        [JsonIgnore]
+        public int ItemType => (int)RootsMagicItemType.Source;
     }
 }

@@ -1,6 +1,10 @@
-﻿namespace FamilieImport.RootsMagic.Models
+﻿using FamilieImport.Domain;
+using FamilieImport.RootsMagic.Enums;
+using System.Text.Json.Serialization;
+
+namespace FamilieImport.RootsMagic.Models
 {
-    public class RootsMagicWitness
+    public class RootsMagicWitness : IImportEntity
     {
         public int WitnessID { get; set; }
         public int EventID { get; set; }
@@ -13,5 +17,10 @@
         public string Surname { get; set; }
         public string Prefix { get; set; }
         public string Suffix { get; set; }
+
+        [JsonIgnore]
+        public string ItemId => WitnessID.ToString();
+        [JsonIgnore]
+        public int ItemType => (int)RootsMagicItemType.Witness;
     }
 }

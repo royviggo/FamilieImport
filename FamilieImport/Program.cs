@@ -13,17 +13,22 @@ namespace ImportLegacy
             var legacyConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + legacyFilename + ";Uid=admin;Pwd=;";
             //var legacyConnection = new OdbcConnection(legacyConnectionString);
 
-            var rootsMagicConnectionString = @"Data Source=C:\source\FamilieImport\Data\RootsMagicData.rmgc";
+            var rootsMagicConnectionString = @"Data Source=C:\source\FamilieImport\DataFiles\RootsMagicData.rmgc";
+            var importConnectionString = @"Data Source=C:\source\FamilieImport\DataFiles\FamilieImport.db";
+
             var rootsMagicConnection = new SqliteConnection(rootsMagicConnectionString);
+            var importConnection = new SqliteConnection(importConnectionString);
 
-            var rootsMagicImportService = new RootsMagicImportService(rootsMagicConnection);
+            var rootsMagicImportService = new RootsMagicImportService(rootsMagicConnection, importConnection);
 
-            Console.WriteLine("Persons");
+            rootsMagicImportService.Import();
 
-            foreach (var p in rootsMagicImportService.GetPersons())
-            {
-                Console.WriteLine("{0}, {1}, {2}, {3}", p.PersonID, p.Sex, p.Living, p.Note);
-            }
+            //Console.WriteLine("Persons");
+
+            //foreach (var p in rootsMagicImportService.GetPersons())
+            //{
+            //    Console.WriteLine("{0}, {1}, {2}, {3}", p.PersonID, p.Sex, p.Living, p.Note);
+            //}
 
             Console.ReadLine();
         }

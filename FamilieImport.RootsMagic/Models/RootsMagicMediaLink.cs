@@ -1,6 +1,10 @@
-﻿namespace FamilieImport.RootsMagic.Models
+﻿using FamilieImport.Domain;
+using FamilieImport.RootsMagic.Enums;
+using System.Text.Json.Serialization;
+
+namespace FamilieImport.RootsMagic.Models
 {
-    public class RootsMagicMediaLink
+    public class RootsMagicMediaLink : IImportEntity
     {
         public int LinkID { get; set; }
         public int MediaID { get; set; }
@@ -20,7 +24,12 @@
         public string Caption { get; set; }
         public string RefNumber { get; set; }
         public string Date { get; set; }
-        public int SortDate { get; set; }
+        public long SortDate { get; set; }
         public string Description { get; set; }
+
+        [JsonIgnore]
+        public string ItemId => LinkID.ToString();
+        [JsonIgnore]
+        public int ItemType => (int)RootsMagicItemType.MediaLink;
     }
 }
