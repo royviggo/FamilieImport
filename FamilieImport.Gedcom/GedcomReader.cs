@@ -1,4 +1,5 @@
 ﻿using FamilieImport.Gedcom.Models;
+using FamilieImport.Gedcom.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,17 +21,31 @@ namespace FamilieImport.Gedcom
             _reader = reader ?? throw new ArgumentNullException(nameof(StringReader));
         }
 
-        public List<GedcomLine> Read()
+        public List<GedcomRecord> Read()
         {
-            var lines = new List<GedcomLine>();
+            var records = new List<GedcomRecord>();
+            var activeRecord = new GedcomRecord();
             GedcomLine line;
 
             while ((line = ReadLine()) != null)
             {
-                lines.Add(line);
+                if (line.Level == 0)
+                {
+                    var record = new GedcomRecord
+                    {
+                        RecordType = GedcomUtil.GetRecordTypeFromTag(line.Tag),
+                        Id = line.Id,
+                        Value = line.Value,
+                        Pointer = line.Pointer
+                    };
+                    records.Add(record);
+                    activeRecord = record;
+                }
+
+                activeRecord.GedcomLines.Add(line);
             }
 
-            return lines;
+            return records;
         }
 
         public GedcomLine ReadLine()

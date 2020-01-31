@@ -15,6 +15,15 @@ namespace FamilieImport.Gedcom.Models
             Pointer = gedcomLine.Pointer;
         }
 
+        public GedcomLine(GedcomLine gedcomLine)
+        {
+            Level = gedcomLine.Level;
+            Id = gedcomLine.Id;
+            Tag = gedcomLine.Tag;
+            Value = gedcomLine.Value;
+            Pointer = gedcomLine.Pointer;
+        }
+
         public GedcomLine(int level, string id, string tag, string value, string pointer)
         {
             Level = level;

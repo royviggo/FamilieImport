@@ -67,6 +67,35 @@ namespace FamilieImport.Gedcom.Utils
             }
         }
 
+        public static GedcomRecordType GetRecordTypeFromTag(GedcomTag tag)
+        {
+            switch (tag)
+            {
+                case GedcomTag.HEAD:
+                    return GedcomRecordType.Header;
+                case GedcomTag.SUBN:
+                    return GedcomRecordType.Submission;
+                case GedcomTag.FAM:
+                    return GedcomRecordType.Family;
+                case GedcomTag.INDI:
+                    return GedcomRecordType.Individual;
+                case GedcomTag.MEDI:
+                    return GedcomRecordType.Multimedia;
+                case GedcomTag.NOTE:
+                    return GedcomRecordType.Note;
+                case GedcomTag.REPO:
+                    return GedcomRecordType.Repository;
+                case GedcomTag.SOUR:
+                    return GedcomRecordType.Source;
+                case GedcomTag.SUBM:
+                    return GedcomRecordType.Submitter;
+                case GedcomTag.TRLR:
+                    return GedcomRecordType.Trailer;
+                default:
+                    return GedcomRecordType.Unknown;
+            }
+        }
+
         public static GedcomLine ErrorLine(string line)
         {
             return new GedcomLine(99, "", "UNKNOWN", line, "");
