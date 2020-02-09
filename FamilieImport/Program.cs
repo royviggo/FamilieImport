@@ -1,10 +1,5 @@
-﻿using FamilieImport.App.Services;
-using FamilieImport.Gedcom;
-using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using FamilieImport.Gedcom;
 using System;
-using System.Data.Odbc;
 using System.IO;
 
 namespace FamilieImport

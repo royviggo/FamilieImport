@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FamilieImport.Gedcom.Enums
+﻿namespace FamilieImport.Gedcom.Enums
 {
     public enum GedcomTag
     {
