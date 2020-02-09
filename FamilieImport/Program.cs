@@ -7,7 +7,7 @@ using System;
 using System.Data.Odbc;
 using System.IO;
 
-namespace ImportLegacy
+namespace FamilieImport
 {
     class Program
     {

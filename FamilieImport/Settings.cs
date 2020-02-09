@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace ImportLegacy
+namespace FamilieImport
 {
     public static class Settings
     {

@@ -1,4 +1,4 @@
-﻿namespace ImportLegacy.Legacy.Models
+﻿namespace FamilieImport.Legacy.Models
 {
     public class LegacyMR
     {

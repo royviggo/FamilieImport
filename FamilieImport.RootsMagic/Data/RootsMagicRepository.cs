@@ -3,7 +3,7 @@ using FamilieImport.RootsMagic.Models;
 using System.Collections.Generic;
 using System.Data;
 
-namespace ImportLegacy.RootsMagic.Repositories
+namespace FamilieImport.RootsMagic.Repositories
 {
     public class RootsMagicRepository
     {

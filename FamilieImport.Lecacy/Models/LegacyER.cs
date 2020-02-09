@@ -1,4 +1,4 @@
-﻿namespace ImportLegacy.Lecacy.Models
+﻿namespace FamilieImport.Lecacy.Models
 {
     public class LegacyER
     {

@@ -3,7 +3,7 @@ using FamilieImport.Domain;
 using FamilieImport.Domain.Data;
 using FamilieImport.Domain.Models;
 using FamilieImport.RootsMagic.Models;
-using ImportLegacy.RootsMagic.Repositories;
+using FamilieImport.RootsMagic.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
