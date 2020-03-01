@@ -34,14 +34,13 @@ namespace FamilieImport.Gedcom.Structures
     {
         public GedcomId Id { get; set; }
         public RestrictionNotice RestrictionNotice { get; set; }
-        public FamilyEventStructure FamilyEvent { get; set; }
+        public ICollection<FamilyEventStructure> FamilyEvents { get; set; }
         public GedcomId Husband { get; set; }
         public GedcomId Wife { get; set; }
         public GedcomId Child { get; set; }
         public int CountOfChildren { get; set; }
-        public GedcomId Submitter { get; set; }
-        public string UserReferenceNumber { get; set; }
-        public string UserReferenceType { get; set; }
+        public ICollection<GedcomId> Submitters { get; set; }
+        public ICollection<UserReference> UserReferences { get; set; }
         public string AutomatedRecordId { get; set; }
         public ChangeDate ChangeDate { get; set; }
         public ICollection<NoteStructure> Notes { get; set; }
@@ -49,6 +48,33 @@ namespace FamilieImport.Gedcom.Structures
         public ICollection<MultimediaLink> MultimediaLinks { get; set; }
     }
 
+    public class IndividualRecord
+    {
+        public GedcomId Id { get; set; }
+        public RestrictionNotice RestrictionNotice { get; set; }
+        public ICollection<PersonalNameStructure> Names { get; set; }
+        public SexValue SexValue { get; set; }
+        public ICollection<IndividualEventStructure> Events { get; set; }
+        public ICollection<IndividualAttributeStructure> Attributes { get; set; }
+        public ICollection<ChildToFamilyLink> ChildToFamilyLinks { get; set; }
+        public ICollection<SpouseToFamilyLink> SpouseToFamilyLinks { get; set; }
+        public ICollection<GedcomId> Submitters { get; set; }
+        public ICollection<AssociationStructure> Associations { get; set; }
+        public string PermanentRecordFileNumber { get; set; }
+        public string AncestralFileNumber { get; set; }
+        public ICollection<UserReference> UserReferences { get; set; }
+        public string AutomatedRecordId { get; set; }
+        public ChangeDate ChangeDate { get; set; }
+        public ICollection<NoteStructure> Notes { get; set; }
+        public ICollection<SourceCitation> SourceCitations { get; set; }
+        public ICollection<MultimediaLink> MultimediaLinks { get; set; }
+    }
+
+    public class UserReference
+    {
+        public string UserReferenceNumber { get; set; }
+        public string UserReferenceType { get; set; }
+    }
 
     public class AddressStructure
     {
@@ -181,13 +207,6 @@ namespace FamilieImport.Gedcom.Structures
         public ICollection<NoteStructure> Notes { get; set; }
     }
 
-    public enum RestrictionNotice
-    {
-        Confidential = 0, 
-        Locked = 1, 
-        Privacy = 2,
-    }
-
     public class SourceCitation
     {
         public GedcomId Source { get; set; }
@@ -221,6 +240,20 @@ namespace FamilieImport.Gedcom.Structures
         Utf8 = 1, 
         Unicode = 2,
         Ascii = 3,
+    }
+
+    public enum RestrictionNotice
+    {
+        Confidential = 0, 
+        Locked = 1, 
+        Privacy = 2,
+    }
+
+    public enum SexValue
+    {
+        Male = 'M',
+        Female = 'F',
+        Undetermined = 'U',
     }
 
     public enum FamilyEventType
