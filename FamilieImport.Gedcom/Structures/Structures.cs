@@ -120,11 +120,6 @@ namespace FamilieImport.Gedcom.Structures
         public ICollection<MultimediaLink> MultimediaLinks { get; set; }
     }
 
-    public class UserReference
-    {
-        public string UserReferenceNumber { get; set; }
-        public string UserReferenceType { get; set; }
-    }
 
     public class AddressStructure
     {
@@ -283,6 +278,13 @@ namespace FamilieImport.Gedcom.Structures
         public GedcomXref Xref { get; set; }
         public ICollection<NoteStructure> Notes { get; set; }
     }
+
+    public class UserReference
+    {
+        public string UserReferenceNumber { get; set; }
+        public string UserReferenceType { get; set; }
+    }
+
 
     public enum CharacterSet
     {
