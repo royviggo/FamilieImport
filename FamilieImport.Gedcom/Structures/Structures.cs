@@ -120,6 +120,32 @@ namespace FamilieImport.Gedcom.Structures
         public ICollection<MultimediaLink> MultimediaLinks { get; set; }
     }
 
+    public class SubmissionRecord
+    {
+        public GedcomXref Xref { get; set; }
+        public string NameOfFamilyFile { get; set; }
+        public string TempleCode { get; set; }
+        public int NumberOfAncestors { get; set; }
+        public int NumberOfDescendants { get; set; }
+        public string OrdinanceProcessFlag { get; set; }
+        public string AutomatedRecordId { get; set; }
+        public ICollection<NoteStructure> Notes { get; set; }
+        public ChangeDate ChangeDate { get; set; }
+    }
+
+    public class SubmitterRecord
+    {
+        public GedcomXref Xref { get; set; }
+        public string SubmitterName { get; set; }
+        public AddressStructure Address { get; set; }
+        public ICollection<MultimediaLink> MultimediaLinks { get; set; }
+        public string LanguagePreference { get; set; }
+        public string SubmitterRegisteredRfn { get; set; }
+        public string AutomatedRecordId { get; set; }
+        public ICollection<NoteStructure> Notes { get; set; }
+        public ChangeDate ChangeDate { get; set; }
+    }
+
 
     public class AddressStructure
     {
