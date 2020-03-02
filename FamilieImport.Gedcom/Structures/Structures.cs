@@ -308,14 +308,17 @@ namespace FamilieImport.Gedcom.Structures
 
     public enum FamilyEventType
     {
+        ANUL, CENS, DIV, DIVF, ENGA, MARB, MARC, MARR, MARL, MARS
     }
 
     public enum IndividualAttributeType
     {
+        CAST, DSCR, EDUC, IDNO, NATI, NCHI, NMR, OCCU, PROP, RELI, RESI, SSN, TITL, FACT
     }
 
     public enum IndividualEventType
     {
+        BIRT, CHR, DEAT, BURI, CREM, ADOP, BAPM, BARM, BASM, BLES, CHRA, CONF, FCOM, ORDN, NATU, EMIG, IMMI, CENS, PROB, WILL, GRAD, RETI, EVEN
     }
 
     public enum NameType
