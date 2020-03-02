@@ -11,7 +11,7 @@ namespace FamilieImport.Gedcom.Models
         {
         }
 
-        public Dictionary<GedcomId, GedcomRecord> CrossReferences { get; set; }
+        public Dictionary<GedcomXref, GedcomRecord> CrossReferences { get; set; }
         public List<GedcomRecord> GedcomRecords { get; set; }
     }
 }

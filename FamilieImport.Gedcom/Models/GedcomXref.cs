@@ -2,9 +2,9 @@
 
 namespace FamilieImport.Gedcom.Models
 {
-    public class GedcomId
+    public class GedcomXref
     {
-        public GedcomId(string id)
+        public GedcomXref(string id)
         {
             Id = GedcomUtil.CleanId(id);
         }

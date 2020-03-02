@@ -12,9 +12,9 @@ namespace FamilieImport.Gedcom.Models
         }
 
         public GedcomRecordType RecordType { get; set; }
-        public GedcomId Id { get; set; }
+        public GedcomXref Id { get; set; }
         public string Value { get; set; }
-        public GedcomId Pointer { get; set; }
+        public GedcomXref Pointer { get; set; }
 
         public List<GedcomLine> GedcomLines { get; set; }
 

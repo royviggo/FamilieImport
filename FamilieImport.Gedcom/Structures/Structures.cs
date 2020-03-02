@@ -17,8 +17,8 @@ namespace FamilieImport.Gedcom.Structures
         public string ReceivingSystemName { get; set; }
         public GenDate TransmissionDate { get; set; }
         public string TransmissionTime { get; set; }
-        public GedcomId Submitter { get; set; }
-        public GedcomId Submission { get; set; }
+        public GedcomXref Submitter { get; set; }
+        public GedcomXref Submission { get; set; }
         public string FileName { get; set; }
         public string CopyrightGedcomFile { get; set; }
         public string GedcomVersionNumber { get; set; }
@@ -32,14 +32,14 @@ namespace FamilieImport.Gedcom.Structures
 
     public class FamilyRecord
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public RestrictionNotice RestrictionNotice { get; set; }
         public ICollection<FamilyEventStructure> FamilyEvents { get; set; }
-        public GedcomId Husband { get; set; }
-        public GedcomId Wife { get; set; }
-        public GedcomId Child { get; set; }
+        public GedcomXref Husband { get; set; }
+        public GedcomXref Wife { get; set; }
+        public GedcomXref Child { get; set; }
         public int CountOfChildren { get; set; }
-        public ICollection<GedcomId> Submitters { get; set; }
+        public ICollection<GedcomXref> Submitters { get; set; }
         public ICollection<UserReference> UserReferences { get; set; }
         public string AutomatedRecordId { get; set; }
         public ChangeDate ChangeDate { get; set; }
@@ -50,7 +50,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class IndividualRecord
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public RestrictionNotice RestrictionNotice { get; set; }
         public ICollection<PersonalNameStructure> Names { get; set; }
         public SexValue SexValue { get; set; }
@@ -58,7 +58,7 @@ namespace FamilieImport.Gedcom.Structures
         public ICollection<IndividualAttributeStructure> Attributes { get; set; }
         public ICollection<ChildToFamilyLink> ChildToFamilyLinks { get; set; }
         public ICollection<SpouseToFamilyLink> SpouseToFamilyLinks { get; set; }
-        public ICollection<GedcomId> Submitters { get; set; }
+        public ICollection<GedcomXref> Submitters { get; set; }
         public ICollection<AssociationStructure> Associations { get; set; }
         public string PermanentRecordFileNumber { get; set; }
         public string AncestralFileNumber { get; set; }
@@ -90,7 +90,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class RepositoryRecord
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public string NameOfRepository { get; set; }
         public ICollection<AddressStructure> Addresses { get; set; }
         public ICollection<NoteStructure> Notes { get; set; }
@@ -101,7 +101,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class SourceRecord
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public ICollection<string> EventsRecorded { get; set; }
         public GenDate DatePeriod { get; set; }
         public string PlaceName { get; set; }
@@ -149,7 +149,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class AssociationStructure
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public string RelationDescription { get; set; }
         public ICollection<SourceCitation> SourceCitations { get; set; }
         public ICollection<NoteStructure> Notes { get; set; }
@@ -164,7 +164,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class ChildToFamilyLink
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public PedigreeLinkageType PedigreeLinkageType { get; set; }
         public ChildLinkageStatus ChildLinkageStatus { get; set; }
         public ICollection<NoteStructure> Notes { get; set; }
@@ -215,13 +215,13 @@ namespace FamilieImport.Gedcom.Structures
     {
         public IndividualEventType IndividualEventType { get; set; }
         public IndividualEventDetail IndividualEventDetail { get; set; }
-        public GedcomId Family { get; set; }
+        public GedcomXref Family { get; set; }
         public string AdoptedByWhichParent { get; set; }
     }
 
     public class MultimediaLink
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public string File { get; set; }
         public MultimediaFormat Format { get; set; }
         public SourceMediaType MediaType { get; set; }
@@ -230,7 +230,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class NoteStructure
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public string Text { get; set; }
     }
 
@@ -259,7 +259,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class SourceCitation
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public string SourceDescription { get; set; }
         public string EventName { get; set; }
         public string EventRole { get; set; }
@@ -272,7 +272,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class SourceRepositoryCitatation
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public NoteStructure NoteStructure { get; set; }
         public string CallNumber { get; set; }
         public SourceMediaType SourceMediaType { get; set; }
@@ -280,7 +280,7 @@ namespace FamilieImport.Gedcom.Structures
 
     public class SpouseToFamilyLink
     {
-        public GedcomId Xref { get; set; }
+        public GedcomXref Xref { get; set; }
         public ICollection<NoteStructure> Notes { get; set; }
     }
 

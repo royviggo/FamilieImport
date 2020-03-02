@@ -27,17 +27,17 @@ namespace FamilieImport.Gedcom.Models
         public GedcomLine(int level, string id, string tag, string value, string pointer)
         {
             Level = level;
-            Id = new GedcomId(id);
+            Id = new GedcomXref(id);
             Tag = GedcomUtil.GetTag(tag);
             Value = value;
-            Pointer = new GedcomId(pointer);
+            Pointer = new GedcomXref(pointer);
         }
 
         public int Level { get; set; }
-        public GedcomId Id { get; set; }
+        public GedcomXref Id { get; set; }
         public GedcomTag Tag { get; set; }
         public string Value { get; set; }
-        public GedcomId Pointer { get; set; }
+        public GedcomXref Pointer { get; set; }
 
         public override string ToString()
         {
