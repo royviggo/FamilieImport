@@ -5,6 +5,8 @@ namespace FamilieImport.Gedcom.Models
 {
     public class GedcomLine
     {
+        public GedcomLine() {}
+
         public GedcomLine(string line)
         {
             var gedcomLine = GedcomUtil.ParseLine(line);
