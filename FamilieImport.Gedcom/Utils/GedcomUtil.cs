@@ -1,7 +1,9 @@
 ﻿using FamilieImport.Gedcom.Enums;
 using FamilieImport.Gedcom.Models;
+using FamilieImport.Gedcom.Structures;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace FamilieImport.Gedcom.Utils
@@ -99,6 +101,41 @@ namespace FamilieImport.Gedcom.Utils
         public static GedcomLine ErrorLine(string line)
         {
             return new GedcomLine(99, "", "UNKNOWN", line, "");
+        }
+
+        public static IGedcomRecord GedcomRecordFactory(GedcomLineCollection record)
+        {
+            var firstLine = record.GedcomLines.FirstOrDefault();
+            if (firstLine == null)
+                return null;
+
+            switch (GetRecordTypeFromTag(firstLine.Tag))
+            {
+                case GedcomRecordType.Header:
+                    return new HeaderRecord(record);
+                case GedcomRecordType.Submission:
+                    return null;
+                case GedcomRecordType.Family:
+                    return null;
+                case GedcomRecordType.Individual:
+                    return null;
+                case GedcomRecordType.Multimedia:
+                    return null;
+                case GedcomRecordType.Note:
+                    return null;
+                case GedcomRecordType.Repository:
+                    return null;
+                case GedcomRecordType.Source:
+                    return null;
+                case GedcomRecordType.Submitter:
+                    return null;
+                case GedcomRecordType.Trailer:
+                    return null;
+                case GedcomRecordType.Unknown:
+                    return null;
+                default:
+                    return null;
+            }
         }
     }
 }
