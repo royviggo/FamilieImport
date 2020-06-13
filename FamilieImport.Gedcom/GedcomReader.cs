@@ -3,6 +3,7 @@ using FamilieImport.Gedcom.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace FamilieImport.Gedcom
 {
@@ -21,25 +22,19 @@ namespace FamilieImport.Gedcom
             _reader = reader ?? throw new ArgumentNullException(nameof(StringReader));
         }
 
-        public List<GedcomRecord> Read()
+        public List<GedcomLineCollection> Read()
         {
-            var records = new List<GedcomRecord>();
-            var activeRecord = new GedcomRecord();
+            var document = new GedcomDocument();
+            var records = new List<GedcomLineCollection>();
+            GedcomLineCollection activeRecord = new GedcomLineCollection();
             GedcomLine line;
 
             while ((line = ReadLine()) != null)
             {
-                if (line.Level == 0)
+                if (line.Level == 0 && activeRecord.GedcomLines.Any())
                 {
-                    var record = new GedcomRecord
-                    {
-                        RecordType = GedcomUtil.GetRecordTypeFromTag(line.Tag),
-                        Id = line.Id,
-                        Value = line.Value,
-                        Pointer = line.Pointer
-                    };
-                    records.Add(record);
-                    activeRecord = record;
+                    records.Add(new GedcomLineCollection(activeRecord));
+                    activeRecord.Clear();
                 }
 
                 activeRecord.GedcomLines.Add(line);

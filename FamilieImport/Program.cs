@@ -31,8 +31,9 @@ namespace FamilieImport
                 using var sr = new StreamReader(gedcomFilename);
                 var gedComReader = new GedcomReader(sr);
 
-                foreach (var gedComLine in gedComReader.Read())
-                    Console.WriteLine(gedComLine);
+                foreach (var gedComLines in gedComReader.Read())
+                    foreach (var gedComLine in gedComLines.GedcomLines)
+                        Console.WriteLine(gedComLine);
             }
             catch (Exception e)
             {
