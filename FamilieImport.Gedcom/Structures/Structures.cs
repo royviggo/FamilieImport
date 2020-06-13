@@ -4,8 +4,17 @@ using System.Collections.Generic;
 
 namespace FamilieImport.Gedcom.Structures
 {
-    public class HeaderRecord
+    public interface IGedcomRecord
     {
+
+    }
+
+    public class HeaderRecord : IGedcomRecord
+    {
+        public HeaderRecord(GedcomLineCollection lines)
+        {
+        }
+
         public string ApprovedSystemId { get; set; }
         public string VersionNumber { get; set; }
         public string NameOfProduct { get; set; }
@@ -30,7 +39,7 @@ namespace FamilieImport.Gedcom.Structures
         public string GedcomContentDescription { get; set; }
     }
 
-    public class FamilyRecord
+    public class FamilyRecord : IGedcomRecord
     {
         public GedcomXref Xref { get; set; }
         public RestrictionNotice RestrictionNotice { get; set; }
@@ -48,7 +57,7 @@ namespace FamilieImport.Gedcom.Structures
         public ICollection<MultimediaLink> MultimediaLinks { get; set; }
     }
 
-    public class IndividualRecord
+    public class IndividualRecord : IGedcomRecord
     {
         public GedcomXref Xref { get; set; }
         public RestrictionNotice RestrictionNotice { get; set; }
@@ -70,7 +79,7 @@ namespace FamilieImport.Gedcom.Structures
         public ICollection<MultimediaLink> MultimediaLinks { get; set; }
     }
 
-    public class MultimediaRecord : MultimediaLink
+    public class MultimediaRecord : MultimediaLink, IGedcomRecord
     {
         public ICollection<UserReference> UserReferences { get; set; }
         public string AutomatedRecordId { get; set; }
@@ -79,7 +88,7 @@ namespace FamilieImport.Gedcom.Structures
         public ChangeDate ChangeDate { get; set; }
     }
 
-    public class NoteRecord : NoteStructure
+    public class NoteRecord : NoteStructure, IGedcomRecord
     {
         public ICollection<UserReference> UserReferences { get; set; }
         public string AutomatedRecordId { get; set; }
@@ -88,7 +97,7 @@ namespace FamilieImport.Gedcom.Structures
         public ChangeDate ChangeDate { get; set; }
     }
 
-    public class RepositoryRecord
+    public class RepositoryRecord : IGedcomRecord
     {
         public GedcomXref Xref { get; set; }
         public string NameOfRepository { get; set; }
@@ -99,7 +108,7 @@ namespace FamilieImport.Gedcom.Structures
         public ChangeDate ChangeDate { get; set; }
     }
 
-    public class SourceRecord
+    public class SourceRecord : IGedcomRecord
     {
         public GedcomXref Xref { get; set; }
         public ICollection<string> EventsRecorded { get; set; }
@@ -120,7 +129,7 @@ namespace FamilieImport.Gedcom.Structures
         public ICollection<MultimediaLink> MultimediaLinks { get; set; }
     }
 
-    public class SubmissionRecord
+    public class SubmissionRecord : IGedcomRecord
     {
         public GedcomXref Xref { get; set; }
         public string NameOfFamilyFile { get; set; }
@@ -133,7 +142,7 @@ namespace FamilieImport.Gedcom.Structures
         public ChangeDate ChangeDate { get; set; }
     }
 
-    public class SubmitterRecord
+    public class SubmitterRecord : IGedcomRecord
     {
         public GedcomXref Xref { get; set; }
         public string SubmitterName { get; set; }
