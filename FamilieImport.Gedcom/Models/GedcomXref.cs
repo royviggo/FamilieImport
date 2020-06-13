@@ -15,5 +15,10 @@ namespace FamilieImport.Gedcom.Models
         {
             return !string.IsNullOrEmpty(Id) ? $"@{Id}@" : string.Empty;
         }
+
+        public static implicit operator GedcomXref(string value)
+        {
+            return new GedcomXref(value);
+        }
     }
 }
