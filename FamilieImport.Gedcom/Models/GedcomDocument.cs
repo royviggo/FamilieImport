@@ -9,8 +9,8 @@ namespace FamilieImport.Gedcom.Models
         {
         }
 
-        public Dictionary<GedcomXref, GedcomRecord> CrossReferences { get; set; }
-        public List<GedcomRecord> GedcomRecords { get; set; }
+        public Dictionary<GedcomXref, GedcomLineCollection> CrossReferences { get; set; }
+        public List<GedcomLineCollection> GedcomRecords { get; set; }
 
         public HeaderRecord HeaderRecord { get; set; }
         public SubmissionRecord SubmissionRecord { get; set; }
