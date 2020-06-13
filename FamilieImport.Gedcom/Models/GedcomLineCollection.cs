@@ -11,14 +11,22 @@ namespace FamilieImport.Gedcom.Models
             GedcomLines = new List<GedcomLine>();
         }
 
-        public GedcomLineCollection(string line) : base(line)
+        public GedcomLineCollection(string line)
         {
             GedcomLines = new List<GedcomLine>();
+            GedcomLines.Add(new GedcomLine(line));
         }
 
-        public GedcomLineCollection(GedcomLine gedcomLine) : base(gedcomLine)
+        public GedcomLineCollection(GedcomLine gedcomLine)
         {
             GedcomLines = new List<GedcomLine>();
+            GedcomLines.Add(gedcomLine);
+        }
+
+        public GedcomLineCollection(GedcomLineCollection gedcomLineCollection)
+        {
+            GedcomLines = new List<GedcomLine>();
+            GedcomLines.AddRange(gedcomLineCollection.GedcomLines);
         }
 
         public GedcomLineCollection(int level, string id, string tag, string value, string pointer) : base(level, id, tag, value, pointer)
